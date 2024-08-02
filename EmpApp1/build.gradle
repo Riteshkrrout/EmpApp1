@@ -41,3 +41,13 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+tasks.withType(JavaCompile) {
+    options.annotationProcessorPath = configurations.annotationProcessor
+}
+sourceSets {
+    main.java.srcDirs += 'build/generated/sources/annotationProcessor/java/main'
+}
+compileJava {
+    options.compilerArgs << '-parameters'
+}
